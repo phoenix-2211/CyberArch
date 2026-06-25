@@ -37,16 +37,20 @@ def create_app():
     )
 
     # ------------------------------------------
-    # ✅ CORS FIX (FINAL)
+    # ✅ CORS FIX (DYNAMICAL LOCALHOST ALLOWANCE)
     # ------------------------------------------
     allowed_origins = os.getenv(
         "CORS_ORIGINS",
         "http://localhost:8088,http://localhost:8080,http://localhost:8082"
     ).split(",")
 
+    import re
+    localhost_regex = re.compile(r"^https?://(localhost|127\.0\.0\.1)(:\d+)?$")
+    origins_patterns = allowed_origins + [localhost_regex]
+
     CORS(
         app,
-        origins=allowed_origins,
+        origins=origins_patterns,
         supports_credentials=True,
         allow_headers=["Content-Type", "Authorization"],
         methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"]

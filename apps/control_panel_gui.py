@@ -495,10 +495,10 @@ class ControlPanel(tk.Tk):
                 creationflags=subprocess.CREATE_NO_WINDOW if sys.platform == "win32" else 0
             )
             self._log_write(f"[Ollama] Started in Vulkan GPU mode (Bypassing CUDA) — PID {self._ollama_proc.pid}")
-            time.sleep(2)
+            time.sleep(4)
             
             # Check if running
-            r = subprocess.run(["ollama", "list"], capture_output=True, text=True, timeout=5, env=ollama_env)
+            r = subprocess.run(["ollama", "list"], capture_output=True, text=True, timeout=10, env=ollama_env)
             if r.returncode == 0:
                 self.after(0, lambda: self._ollama_dot.configure(fg=GREEN))
                 self._log_write("[Ollama] ✔ Running & Ready.")
@@ -528,6 +528,20 @@ class ControlPanel(tk.Tk):
                         proc.wait(timeout=5)
                     except subprocess.TimeoutExpired:
                         proc.kill()
+
+        # Force terminate any other processes on our backend and frontend ports to be absolutely sure
+        if sys.platform == "win32":
+            for port in (self._backend_port, self._frontend_port):
+                try:
+                    r = subprocess.run(["netstat", "-ano"], capture_output=True, text=True, timeout=3)
+                    for line in r.stdout.splitlines():
+                        if f":{port} " in line and "LISTENING" in line:
+                            pid = line.strip().split()[-1]
+                            subprocess.run(["taskkill", "/F", "/T", "/PID", pid], capture_output=True, timeout=3)
+                            self._log_write(f"[Stop] Terminated lingering process on port {port} (PID {pid})")
+                except Exception:
+                    pass
+
         self._backend_proc = None
         self._frontend_proc = None
         self._ollama_proc = None
