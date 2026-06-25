@@ -1,0 +1,38 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.spec
+build/
+dist/
+venv/
+.venv/
+env/
+.env
+
+# Databases & Runtime State
+*.db
+*.db-journal
+*.sqlite
+Backend PBL/reports/*.html
+
+# Node / Frontend
+node_modules/
+dist-frontend/
+.eslintcache
+.parcel-cache
+.cache/
+.vite/
+
+# Operating System
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# App config caches (temp/local config)
+apps/cypherguard.json
+cypherguard.json
+
+# Local AI Models (LLM weights)
+ollama_models/

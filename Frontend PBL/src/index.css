@@ -1,0 +1,199 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 224 71% 4%; /* Professional Deep Slate-Black: #020617 */
+    --foreground: 210 40% 98%; /* High-contrast Slate-White */
+    --card: 222 47% 8%; /* Premium Slate-Gray: #0f172a / #090e1a */
+    --card-foreground: 210 40% 98%;
+    --popover: 222 47% 8%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 224 86% 58%; /* Clean Enterprise Blue: #2563eb */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 222 47% 11%; /* Slate-800: #1e293b */
+    --secondary-foreground: 210 40% 98%;
+    --muted: 222 47% 11%;
+    --muted-foreground: 215 20% 65%;
+    --accent: 222 47% 13%; /* Highlight container */
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 84% 60%; /* Enterprise Red: #ef4444 */
+    --destructive-foreground: 0 0% 100%;
+    --border: 222 47% 16%; /* Muted slate borders: #1e293b */
+    --input: 222 47% 16%;
+    --ring: 224 86% 58%;
+    --radius: 0.5rem; /* Crisper, less rounded corners */
+
+    --success: 142 70% 45%; /* Solid Green: #10b981 */
+    --success-foreground: 0 0% 100%;
+    --warning: 38 92% 50%; /* Solid Amber: #f59e0b */
+    --warning-foreground: 0 0% 100%;
+    --info: 210 90% 50%; /* Info Blue: #3b82f6 */
+
+    --text-secondary: 215 15% 75%;
+
+    --sidebar-background: 222 47% 6%; /* Crisp dark sidebar */
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-primary: 224 86% 58%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 222 47% 10%;
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-border: 222 47% 12%;
+    --sidebar-ring: 224 86% 58%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    background-color: #020617;
+    color: #f8fafc;
+    font-family: 'Outfit', 'Inter', sans-serif;
+    overflow-x: hidden;
+  }
+}
+
+/* Custom Professional Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #020617;
+}
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #334155;
+}
+
+@layer utilities {
+  .font-mono {
+    font-family: 'JetBrains Mono', monospace !important;
+    letter-spacing: -0.2px;
+  }
+  
+  /* Crisp Enterprise Card */
+  .soc-card {
+    position: relative;
+    background-color: #090e1a;
+    border: 1px solid #1e293b;
+    box-shadow: 0 4px 15px -3px rgba(0, 0, 0, 0.4);
+    border-radius: 8px;
+    transition: all 0.2s ease-in-out;
+  }
+
+  .soc-card:hover {
+    border-color: #334155;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+  }
+
+  /* Flat Status Badges */
+  .severity-critical {
+    background: rgba(239, 68, 68, 0.1) !important;
+    color: #f87171 !important;
+    border: 1px solid rgba(239, 68, 68, 0.2) !important;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 600;
+  }
+  .severity-high {
+    background: rgba(249, 115, 22, 0.1) !important;
+    color: #fb923c !important;
+    border: 1px solid rgba(249, 115, 22, 0.2) !important;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 600;
+  }
+  .severity-medium {
+    background: rgba(245, 158, 11, 0.1) !important;
+    color: #fbbf24 !important;
+    border: 1px solid rgba(245, 158, 11, 0.2) !important;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 600;
+  }
+  .severity-info {
+    background: rgba(59, 130, 246, 0.1) !important;
+    color: #60a5fa !important;
+    border: 1px solid rgba(59, 130, 246, 0.2) !important;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 600;
+  }
+  .severity-low {
+    background: rgba(100, 116, 139, 0.1) !important;
+    color: #94a3b8 !important;
+    border: 1px solid rgba(100, 116, 139, 0.2) !important;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  
+  .status-active {
+    background: rgba(16, 185, 129, 0.1) !important;
+    color: #34d399 !important;
+    border: 1px solid rgba(16, 185, 129, 0.2) !important;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 600;
+  }
+  .status-locked {
+    background: rgba(239, 68, 68, 0.1) !important;
+    color: #f87171 !important;
+    border: 1px solid rgba(239, 68, 68, 0.2) !important;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 600;
+  }
+  .status-inactive {
+    background: rgba(100, 116, 139, 0.1) !important;
+    color: #94a3b8 !important;
+    border: 1px solid rgba(100, 116, 139, 0.2) !important;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  /* Clean Slate Inputs */
+  .cyber-input {
+    background-color: #0d1527 !important;
+    border: 1px solid #1e293b !important;
+    color: #f8fafc !important;
+    border-radius: 6px !important;
+    transition: all 0.15s ease-in-out !important;
+  }
+  .cyber-input:focus {
+    border-color: #2563eb !important;
+    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2) !important;
+    background-color: #0f1930 !important;
+  }
+
+  /* Solid Enterprise Buttons */
+  .cyber-btn-primary {
+    background-color: #2563eb !important;
+    color: #ffffff !important;
+    font-weight: 500 !important;
+    border-radius: 6px !important;
+    transition: all 0.15s ease-in-out !important;
+  }
+  .cyber-btn-primary:hover:not(:disabled) {
+    background-color: #1d4ed8 !important;
+  }
+  .cyber-btn-primary:active:not(:disabled) {
+    background-color: #1e40af !important;
+  }
+}
+
+/* Pulsing Status dot */
+@keyframes status-pulse {
+  0%, 100% {
+    opacity: 0.7;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.live-indicator {
+  animation: status-pulse 2s infinite;
+  display: inline-block;
+  border-radius: 9999px;
+  background-color: #10b981;
+}
